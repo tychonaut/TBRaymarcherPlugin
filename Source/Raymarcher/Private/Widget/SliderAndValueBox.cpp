@@ -29,6 +29,16 @@ bool USliderAndValueBox::Initialize()
 	return true;
 }
 
+
+void USliderAndValueBox::SetMinMax(FVector2D Value)
+{
+	if (ValueSlider)
+	{
+		ValueSlider->SetMinValue(Value.X);
+		ValueSlider->SetMaxValue(Value.Y);
+	}
+}
+
 void USliderAndValueBox::SetValue(float Value)
 {
 	if (ValueSlider)

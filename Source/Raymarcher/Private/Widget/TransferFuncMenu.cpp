@@ -46,7 +46,10 @@ bool UTransferFuncMenu::Initialize()
 
 		TFSelectionComboBox->SetSelectedIndex(0);
 
-		TFSelectionComboBox->OnSelectionChanged.Clear();
+		//why clear? HACK try remove in order to get rid of not caputuring this 
+		//TFSelectionComboBox->OnSelectionChanged.Clear();
+
+
 		TFSelectionComboBox->OnSelectionChanged.AddDynamic(this, &UTransferFuncMenu::OnTFCurveChanged);
 	}
 	return true;
@@ -127,6 +130,9 @@ void UTransferFuncMenu::OnNewVolumeLoaded()
 		{
 			WindowCenterBox->MinMax =
 				FVector2D(RangeProviderVolume->VolumeAsset->ImageInfo.MinValue, RangeProviderVolume->VolumeAsset->ImageInfo.MaxValue);
+			//HACK fix to escalate values to actual widgets:
+			WindowCenterBox->SetMinMax(WindowCenterBox->MinMax);
+
 			WindowCenterBox->SetValue(RangeProviderVolume->VolumeAsset->ImageInfo.DenormalizeValue(DefaultParameters.Center));
 
 			WindowCenterBox->SetAllLabelsFromSlider();
@@ -134,7 +140,13 @@ void UTransferFuncMenu::OnNewVolumeLoaded()
 
 		if (WindowWidthBox)
 		{
-			WindowWidthBox->MinMax = FVector2D(-1000, 4000);
+			//wtf?
+			//WindowWidthBox->MinMax = FVector2D(-1000, 4000);
+			WindowWidthBox->MinMax =
+				FVector2D(RangeProviderVolume->VolumeAsset->ImageInfo.MinValue, RangeProviderVolume->VolumeAsset->ImageInfo.MaxValue);
+			//HACK fix to escalate values to actual widgets:
+			WindowWidthBox->SetMinMax(WindowCenterBox->MinMax);
+
 			WindowWidthBox->SetValue(RangeProviderVolume->VolumeAsset->ImageInfo.DenormalizeRange(DefaultParameters.Width));
 			WindowWidthBox->SetAllLabelsFromSlider();
 		}

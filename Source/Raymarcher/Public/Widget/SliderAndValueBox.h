@@ -39,7 +39,7 @@ public:
 	UTextBlock* SliderValueLabel;
 
 	// Slider for changing the value.
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite)
 	USlider* ValueSlider;
 
 	// Checkbox allowing us to fine-tune the slider (make the min/max of the slider close to current value).
@@ -66,7 +66,12 @@ public:
 	FOnSliderValueChanged OnValueChanged;
 
 	/// Sets a value of the slider.
+	// Edit: Make Blueprint callable for easier ndisplay integration
+	UFUNCTION(BlueprintCallable)
 	void SetValue(float Value);
+
+	/// Sets a value of the slider.
+	void SetMinMax(FVector2D Value);
 
 	/// Sets the min and max labels to the values matching the ones in the slider.
 	void SetMinMaxLabelsFromSlider() const;

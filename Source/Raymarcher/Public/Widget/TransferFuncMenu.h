@@ -38,7 +38,7 @@ public:
 	USliderAndValueBox* WindowWidthBox;
 
 	/// Combobox for selecting transfer functions.
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(meta = (BindWidget), BlueprintReadWrite)
 	UComboBoxString* TFSelectionComboBox;
 
 	/// Checkbox to enable/disable low cutoff.
@@ -74,7 +74,7 @@ public:
 	void OnHighCutoffToggled(bool bToggledOn);
 
 	/// Called when a TF curve is selected in the combobox.
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void OnTFCurveChanged(FString CurveName, ESelectInfo::Type SelectType);
 
 	/// Called when a new MHD file/volume is loaded into the associated raymarch volume.
