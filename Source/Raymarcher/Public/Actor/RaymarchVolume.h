@@ -120,7 +120,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	/** The loaded Volume asset belonging to this volume*/
-	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	//old code
+	//UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	// tryning to set volume data assets in editor instead of bluprint node graph
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UVolumeAsset* VolumeAsset = nullptr;
 
 	/** Only kept so that we can compare to it when a user changes the VolumeAsset. See SetVolumeAsset().*/
