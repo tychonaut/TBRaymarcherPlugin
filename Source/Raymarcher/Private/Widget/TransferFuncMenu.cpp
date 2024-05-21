@@ -50,8 +50,9 @@ bool UTransferFuncMenu::Initialize()
 		//why clear? HACK try remove in order to get rid of not caputuring this 
 		//TFSelectionComboBox->OnSelectionChanged.Clear();
 
+		// TEST: Remove this delegateand replace with blueprint correspndance:
+		//TFSelectionComboBox->OnSelectionChanged.AddDynamic(this, &UTransferFuncMenu::OnTFCurveChanged);
 
-		TFSelectionComboBox->OnSelectionChanged.AddDynamic(this, &UTransferFuncMenu::OnTFCurveChanged);
 	}
 	return true;
 }
